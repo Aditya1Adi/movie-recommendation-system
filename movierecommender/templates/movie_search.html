@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><style>
+    .poster-image {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+</style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% extends 'dashboard.html' %}
+
+{% block title %}Movie Search{% endblock %}
+
+{% block content %}
+    <!-- movie_search.html -->
+<ul id="movieList">
+  {% for movie in movies %}
+      <img src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}"class="poster-image">
+
+
+    <li><a href="{% url 'movie_detail' imdb_id=movie.imdb_id %}">{{ movie.original_title}}</a></li>
+
+
+  {% endfor %}
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchInput').on('input', function () {
+            var query = $(this).val();
+            if (query.length >= 2) { // Make the AJAX call when at least 2 characters are typed
+                $.ajax({
+                    type: 'GET',
+                    url: '/search_movies/',
+                    data: { q: query },
+                    success: function (data) {
+                        var movieList = $('#movieList');
+                        movieList.empty();
+                        data.movies.forEach(function (movie) {
+                            var listItem = $('<li></li>');
+                            var link = $('<a></a>').attr('href', `/movie_detail/${movie.imdb_id}/`).text(movie.original_title);
+                            listItem.append(link);
+                            movieList.append(listItem);
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log('Error:', error);
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}
+
+</body>
+</html>

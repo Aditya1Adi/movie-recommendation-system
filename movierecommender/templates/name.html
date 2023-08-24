@@ -1,0 +1,33 @@
+<!-- movie_recommender.html -->
+<!DOCTYPE html>
+<html>
+<head><style>
+    .box-container {
+  display: flex;
+  align-items: center; /* Vertically align items */
+}
+
+</style>
+    <title>Movie Recommender</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Movie Recommender</h1>
+    <h2>Selected Movie: {{ selected_movie.original_title }}</h2>
+
+    <div class='box-container'>
+    <img src="{{ poster_url }}" alt="{{ selected_movie.original_title }} Poster">
+    </div>
+
+    <h3>Recommended Movies:</h3>
+    <ul>
+        {% for movie in recommended_movies %}
+            <img src="https://image.tmdb.org/t/p/original{{movies.poster_path}}" width="320" height="480" alt="original" class="card-img-left">
+            <b>{{ movie.0 }}</b>
+            <li>Overview: {{ movie.1 }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+find issues with the movie posters and provide a better code with javascript also if required

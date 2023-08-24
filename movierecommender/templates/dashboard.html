@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <style>
+      .horizontal-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        background-color: #f0f0f0;
+      }
+
+      .horizontal-bar form {
+        display: flex;
+        align-items: center;
+      }
+
+      .horizontal-bar input[type="text"] {
+        padding: 5px;
+        margin-right: 10px;
+      }
+
+      .horizontal-bar button {
+        padding: 5px 10px;
+      }
+
+      .horizontal-bar a {
+        padding: 5px 10px;
+        text-decoration: none;
+      }
+    </style>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="horizontal-bar">
+
+    <form action="{% url 'movie_search' %}" method="get">
+      <input type="text" name="q" placeholder="Search for a movie">
+      <button type="submit">Search</button>
+    </form>
+    <a href="{% url 'bucket_list' %}">Bucket List</a>
+    <a href="{% url 'watch_list' %}">Watch List</a>
+    <a href="{% url 'logout_view' %}">Logout</a>
+
+
+  </div>
+
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

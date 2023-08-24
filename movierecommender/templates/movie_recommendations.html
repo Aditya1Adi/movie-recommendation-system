@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .poster-image {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .box-container {
+            display: flex;
+            align-items: center; /* Vertically align items */
+        }
+    </style>
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Movie Recommender</h1>
+    <h2>Selected Movie: {{ selected_movie.original_title }}</h2>
+
+    <div class='box-container'>
+        <img src="http://image.tmdb.org/t/p/w500/{{ selected_movie.poster_path }}" alt="{{ selected_movie.original_title }} Poster" class="poster-image">
+    </div>
+
+    <h3>Recommended Movies:</h3>
+
+    <div class="row">
+        {% for movie in recommended_movies %}
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <img src="http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="{{ movie.0 }} Poster" class="poster-image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.original_title }}</h5>
+                        <p class="card-text">Overview: {{ movie.overview }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

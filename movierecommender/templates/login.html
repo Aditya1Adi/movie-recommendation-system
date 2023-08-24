@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+    .form-group{
+                width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+            }
+            .body {
+  background-image: url('https://www.reliancedigital.in/wp-content/uploads/2019/02/netflix_movies_cover.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+        .container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 90vh;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border: 1px solid #FFFFFF;
+            box-shadow: 10px 10px;
+        }
+</style>
+<body class="body">
+
+{% block content %}
+    <div class="container ">
+    <div class="login-box">
+
+    <h2 class="center-block">Login</h2>
+    <div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+    </form>
+    </div>
+    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+{% endblock %}
+</div>
+</div>
+</body>

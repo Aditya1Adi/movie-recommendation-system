@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .poster-image {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .social-icons a {
+    color: #fff;
+float: right;
+    font-size: 24px;
+    margin: 0 5px;
+    text-decoration: none;
+}
+        .movies-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .movie-card {
+            width: 200px;
+        }
+
+        .movie-title {
+            text-align: center;
+        }
+        h1{
+            color: black;
+        }
+
+.social-icons a:hover {
+    color: #0095ff; /* Change the color on hover to your liking */
+
+}
+        body {
+
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .logo-title {
+    display: flex;
+    align-items: center;
+}
+
+.logo-title img {
+    width: 40px; /* Adjust the width to fit your logo */
+    height: 40px; /* Adjust the height to fit your logo */
+    margin-right: 10px;
+}
+
+.logo-title h1 {
+    color: #fff;
+    font-size: 24px;
+    margin: 0;
+}
+
+nav {
+    background-color: rgb(0,0,0,1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0;
+    padding: 15px 20px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: snow;
+    font-size: 16px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+        .connect-via {
+            color: white;
+            margin: 0 5px;
+        }
+
+    </style>
+    <title>Movie recommendation</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <div class="logo-title">
+            <img src="https://cdn5.vectorstock.com/i/1000x1000/34/69/movie-camera-sketch-vector-13813469.jpg" alt="Your Logo">
+            <h1>Movie recommender</h1>
+        </div>
+            <li><a href="{% url 'login' %}">LogIn</a></li>
+            <li><a href="{% url 'register' %}">Create Account</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+    <h1 class="">Get recommendations on the films you've watched</h1>
+    <h1>Add movies to your bucket list</h1>
+     <div class="movies-container">
+        {% for movie in movies %}
+        <div class="movie-card">
+            <img src= "http://image.tmdb.org/t/p/w500/{{ movie.poster_path }}" alt="original" class="poster-image">
+            <div class="movie-title">{{ movie.original_title }}</div>
+            <!-- Add other movie details here if needed -->
+        </div>
+        {% endfor %}
+    </div>
+     <nav>
+         <ul>
+     <div class="social-icons">
+   <a href="https://www.facebook.com/adityaaggrawal.aggrawal.56" target="_blank" rel="noopener">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/aditya-kumar-432a65220" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin"></i>
+    </a>
+         <a href="https://instagram.com/adityellectual?igshid=NGExMmI2YTkyZg==" target="_blank" rel="noopener">
+      <i class="fab fa-instagram"></i>
+    </a>
+         <a class="connect-via">connect via</a>
+     </div>
+         </ul>
+     </nav>
+</body>
+</html>

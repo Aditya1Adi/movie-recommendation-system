@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Watch List</title>
+</head>
+<body>
+    <h1>My Watch List</h1>
+    <ul>
+        {% for item in watch_list %}
+            <li>
+                <h2>{{ item.movie.original_title }}</h2>
+                <p>Genre: {{ item.movie.genres }}</p>
+                <p>Rating: {{ item.movie.vote_average }}</p>
+                <p>{{ item.movie.overview }}</p>
+            </li>
+        {% empty %}
+            <li>Your watch list is empty.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

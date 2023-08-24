@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .poster-image {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+        .box-container {
+            display: flex;
+            align-items: center; /* Vertically align items */
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Movie Detail</title>
+</head>
+<body>
+    <h1>{{ movies.original_title }}</h1>
+    <div class="box-container">
+        <img src="http://image.tmdb.org/t/p/w500/{{ movies.poster_path }}" class="poster-image">
+    </div>
+    <p>IMDb ID: {{ movies.imdb_id }}</p>
+    <p>Release Year: {{ movies.release_date }}</p>
+    <p>Description: {{ movies.overview }}</p>
+    <p>Average Rating: {{ movies.vote_average }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <label for="rating">Rate this movie:</label>
+        <select id="rating" name="rating">
+            <option value="1">1 (Awful)</option>
+            <option value="2">2 (Bad)</option>
+            <option value="3">3 (Okay)</option>
+            <option value="4">4 (Good)</option>
+            <option value="5">5 (Excellent)</option>
+        </select>
+        <button type="submit">Submit Rating</button>
+    </form>
+
+    <!-- Display success message after rating submission -->
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form action="{% url 'movie_recommendations' movies.imdb_id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Get Recommendations">
+    </form>
+    <a href="{% url 'add_to_bucket_list' movies.imdb_id %}">Add to Bucket List</a>
+    <p><a href="{% url 'add_to_watch_list' movies.imdb_id%}">Add to watch list</a></p>
+    <p><a href="{% url 'movie_search' %}">Back to movie search</a></p>
+</body>
+</html>

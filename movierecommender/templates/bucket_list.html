@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .poster-image {
+            width: 200px; /* Set the desired width */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Bucket List</title>
+</head>
+<body>
+
+    <h1>My Bucket List</h1>
+    <ul>
+{% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+        {% for item in bucket_list %}
+            <li>
+            
+                <a href="{% url 'movie_detail' item.movie.imdb_id %}">
+                    <img src="http://image.tmdb.org/t/p/w500/{{ item.movie.poster_path }}" class="poster-image">
+                     <h4>
+                    {{ item.movie.original_title }}
+                </h4>
+                </a>
+                <p>Genre: {{ item.movie.genres }}</p>
+                <p>Rating: {{ item.movie.vote_average }}</p>
+                <p>{{ item.movie.overview }}</p>
+                <a href="{% url 'remove_from_bucket_list' item.movie.imdb_id %}">Remove from Bucket List</a>
+            </li>
+        {% empty %}
+            <li>Your bucket list is empty.</li>
+        {% endfor %}
+
+    </ul>
+</body>
+</html>
+
